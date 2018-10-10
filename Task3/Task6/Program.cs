@@ -9,7 +9,7 @@ namespace Task6
         {
             // 7.45678e567
             //0.3E-2
-            Regex regexScience = new Regex(@"[.][0-9]+[e]+[-,0-9]");
+            Regex regexScience = new Regex(@"\d\.[0-9]+[eE]-?[0-9]+");
             Regex regexOrdinary = new Regex(@"[0-9]+[.][0-9]");
             if (regexScience.IsMatch(text))
             {
