@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DemoApplication;
 
 namespace Task2
 {
@@ -11,9 +10,10 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            GeometricProgression geometricProgression = new GeometricProgression(1,2);
-            InterfacesDemo.PrintSeries(geometricProgression);
-            Console.ReadLine();
+            Ring ring = new Ring(5,5,2.0,1.0);
+            Console.WriteLine("Square :"+ ring.Square(ring));
+            Console.WriteLine("Length :"+ ring.Length(ring));
+            Console.ReadKey();
         }
     }
 }

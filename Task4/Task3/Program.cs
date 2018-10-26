@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,63 +7,36 @@ using System.Threading.Tasks;
 
 namespace Task3
 {
-    class Triangle
-    {
-        private double a;
-        private double b;
-        private double c;
-
-        public double A
-        {
-            get { return a; }
-            set { if(value>0)a = value; }
-        }
-        public double B
-        {
-            get { return b; }
-            set { if (value > 0) b = value; }
-        }
-        public double C
-        {
-            get { return c; }
-            set { if (value > 0) { c = value; } }
-        }
-        public double Square(Triangle triangle)
-        {
-            double p = triangle.Perimetr(triangle)/2;
-            return Math.Sqrt(p * (p - a) * (p - b) * (p - c));
-        }
-        public Triangle(double a, double b, double c)
-        {
-            if ((a < 0) || (b < 0) || (c < 0))
-            {
-                throw new ArgumentOutOfRangeException("Line of triangle can't be less or equality 0");
-            }
-            else if ((b + c > a) && (a + c > b) && (a + b > c))
-            {
-                A = a;
-                B = b;
-                C = c;
-            }
-            else
-            {
-                throw new ArgumentException($"Values {a}, {b}, {c} don't form a triangle");
-            }
-           
-        }
-        public double Perimetr()
-        {
-            return a + b + c;
-        }
-    }
     class Program
     {
+        static private void CompareCultures(string nameFirstCulture, string nameSecondCulture)
+        {
+            try
+            {
+                CultureInfo cultureInfoFirst = new CultureInfo(nameFirstCulture);
+                CultureInfo cultureInfoSecond = new CultureInfo(nameSecondCulture);
+                Console.WriteLine("|{0,-10}|{1,-2}|", cultureInfoFirst.EnglishName, cultureInfoSecond.EnglishName);
+                Console.WriteLine(new string('-',50));
+                Console.WriteLine("|{0,-25}|{1,-10}|{2,-12}|", "NumberDecimalSeparator", cultureInfoFirst.NumberFormat.NumberDecimalSeparator, cultureInfoSecond.NumberFormat.NumberDecimalSeparator);
+                Console.WriteLine(new string('-', 50));
+                Console.WriteLine("|{0,-25}|{1,-10}|{2,-12}|", "ShortDatePattern", cultureInfoFirst.DateTimeFormat.ShortDatePattern, cultureInfoSecond.DateTimeFormat.ShortDatePattern);
+                Console.WriteLine(new string('-', 50));
+                Console.WriteLine("|{0,-25}|{1,-10}|{2,-12}|", "CurrencySymbol", cultureInfoFirst.NumberFormat.CurrencySymbol, cultureInfoSecond.NumberFormat.CurrencySymbol);
+                Console.WriteLine(new string('-', 50));
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+
+        }
         static void Main(string[] args)
         {
-            Triangle triangle = new Triangle(2, 2, 25);
-            triangle.Perimetr();
-            Console.WriteLine("Perimetr: {0}", triangle.Perimetr(triangle));
-            Console.WriteLine("Square: {0}", triangle.Square(triangle));
+            Console.WriteLine("Input string first: ");
+            String text = Console.ReadLine();
+            Console.WriteLine("Input string second: ");
+            String text2 = Console.ReadLine();
+            CompareCultures(text,text2);
             Console.ReadLine();
         }
     }

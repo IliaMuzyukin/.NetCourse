@@ -6,69 +6,44 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
-    class Round
-    {
-        private int x;
-        private int y;
-        private double radius;
-        private double pi = 3.14;
-
-        public int X
-        {
-            get
-            {
-                return x;
-            }
-            set
-            {
-                x = value;
-            }
-        }
-        public int Y
-        {
-            get
-            {
-                return y;
-            }
-            set
-            {
-                y = value;
-            }
-        }
-        public double Radius
-        {
-            get { return radius; }
-            set
-            {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Radius can't be less that 0"); ;
-                }
-                radius = value;
-            }
-        }
-        public double Square(Round round)
-        {
-            return round.pi * Math.Pow(round.radius,2);
-        }
-        public Round(int x,int y,double radius)
-        {
-            X = x;
-            Y = y;
-            Radius = radius;
-        }
-        public double Length(Round round)
-        {
-            return round.pi * round.radius*2;
-        }
-    }
     class Program
     {
+        static private string DoubleLetters(string textString, string keyString)
+        {
+            char[] characters = new char[keyString.Length];
+            string outText = string.Empty;
+            int j = 0;
+            for (int i = 0; i < keyString.Length; i++)
+            {
+                if (!(characters.Contains(keyString[i])) && textString.Contains(keyString[i]))
+                {
+                    characters[j] = keyString[i];
+                    j++;
+                }
+            }
+            for (int i = 0; i < textString.Length; i++)
+            {
+                outText += textString[i];
+                if (characters.Contains<Char>(textString[i]) && textString[i] != ' ')
+                {
+                    outText += textString[i];
+                }
+            }
+            for (int i = 0; i < j; i++)
+            {
+                textString = textString.Replace(characters[i].ToString(), new string(characters[i], 2));
+            }
+
+            return outText;
+        }
         static void Main(string[] args)
         {
-            Round round = new Round(5,5,25);
-            Console.WriteLine("Square of round: {0}",round.Square(round));
-            Console.WriteLine("Length of round: {0}",round.Length(round));
+            Console.WriteLine("Input string first: ");
+            String text = Console.ReadLine();
+            Console.WriteLine("Input string second: ");
+            String text2 = Console.ReadLine();
+            DoubleLetters(text, text2);
+            Console.WriteLine("Result string: {0}", DoubleLetters(text, text2));
             Console.ReadLine();
         }
     }
