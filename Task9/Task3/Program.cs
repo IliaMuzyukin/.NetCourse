@@ -18,6 +18,7 @@ namespace Task3
             int[] numberOfIntromission = new int[uniqueStr.Length];
             Dictionary<string, double> wordAndNumber = new Dictionary<string, double>();
             FindingWords(uniqueStr, numberOfIntromission, str, wordAndNumber, numberOfWords);
+
             Console.WriteLine(str);
             Console.WriteLine("Word | Rate");
             wordAndNumber = Sort(wordAndNumber);
@@ -43,7 +44,7 @@ namespace Task3
                 count[i] = new Regex(pattern).Matches(source).Count;
                 double rate = count[i] / (numberOfWords * 0.01);
                 dictionary.Add(words[i], rate);
-            }
+            }// mach сразу найдет слова и тип их количество
         }
         private static void Writeline(Dictionary<string, double> dictionary, int NumOfIteration)
         {
